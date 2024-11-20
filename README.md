@@ -3,9 +3,9 @@
 ## 🤔 What is Cert-Manager?  
 Cert-Manager is a Kubernetes add-on that automates the management of TLS certificates. It supports issuers like Let’s Encrypt, HashiCorp Vault, and private PKI. With Cert-Manager, you can:
 
-✅ Automatically request and renew certificates.
-✅ Secure your apps over HTTPS.
-✅ Integrate with multiple certificate providers.
+✅ Automatically request and renew certificates.  
+✅ Secure your apps over HTTPS.  
+✅ Integrate with multiple certificate providers.  
 
 ---
 
