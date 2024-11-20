@@ -18,9 +18,35 @@ Cert-Manager is a Kubernetes add-on that automates the management of TLS certifi
 
 ## 📚 Tutorial Overview  
 In this guide, you will:  
-1️⃣ Install Cert-Manager using Helm.  
-2️⃣ Create a `ClusterIssuer` for Let’s Encrypt.  
-3️⃣ Secure your app by updating Ingress with TLS certificates.  
+1️⃣ **Start a Kubernetes cluster with Minikube.**  
+2️⃣ Install Cert-Manager using Helm.  
+3️⃣ Create a `ClusterIssuer` for Let’s Encrypt.  
+4️⃣ Secure your app by updating Ingress with TLS certificates.  
+
+---
+
+### ✅ Prerequisites  
+Before you begin, ensure you have:  
+- 🖥️ A computer with Minikube installed ([Installation Guide](https://minikube.sigs.k8s.io/docs/start/)).  
+- 🐳 **kubectl** installed and configured ([kubectl Installation](https://kubernetes.io/docs/tasks/tools/)).  
+- 🎛️ Helm (version 3+) installed ([Helm Installation](https://helm.sh/docs/intro/install/)).  
+- 📡 A domain name (if testing HTTPS with external access).  
+- 💡 Basic understanding of Kubernetes concepts like Ingress and namespaces.
+
+---
+
+### 🚀 Step 1: Start Your Minikube Cluster  
+Run the following command to start a local Kubernetes cluster with Minikube:  
+
+```bash
+minikube start --kubernetes-version v1.30 --memory 8192 --cpus 2 --driver=docker
+```
+This creates a Kubernetes environment suitable for testing Cert-Manager. Once it’s running, verify with:
+
+```bash
+kubectl get nodes
+```
+You should see a ready node listed! ✅
 
 ---
 
