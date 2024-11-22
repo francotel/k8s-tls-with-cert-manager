@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: secure-app-svc  # The name of the Service; must be unique within the namespace.
+  namespace: secure-app        # Specifies the namespace for this Deployment.
+  labels:
+    app: secure-app      # Labels to categorize or identify the Service, used for grouping.
+spec:
+  type: NodePort         # Service type; ClusterIP exposes the service only within the cluster.
+  selector:              # Specifies which Pods this Service targets based on matching labels.
+    app: secure-app      # Targets Pods with the label "app: secure-app".
+  ports:                 # Configuration of ports the Service exposes.
+    - protocol: TCP      # The protocol used for the Service (TCP is the default).
+      port: 80           # The port the Service listens on internally.
+      targetPort: 80     # The port on the targeted Pods to which traffic is directed.
