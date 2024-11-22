@@ -48,6 +48,11 @@ kubectl get nodes
 ```
 You should see a ready node listed! ✅
 
+```bash
+minikube addons enable ingress
+minikube addons enable metallb
+```
+
 ---
 
 ## 🚀 Installing Cert-Manager with Helm  
