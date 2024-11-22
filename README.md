@@ -96,12 +96,12 @@ This confirms Cert-Manager is installed and ready to manage your TLS certificate
 
 ---
 
-# 🔐 Let's Encrypt and ClusterIssuer in Kubernetes
+## 🔐 Let's Encrypt and ClusterIssuer in Kubernetes
 
-## What is Let's Encrypt?
+### What is Let's Encrypt?
 [Let's Encrypt](https://letsencrypt.org/) is a free, automated, and open certificate authority (CA) that provides SSL/TLS certificates. These certificates are used to secure communication over the internet by encrypting data between clients and servers. With Let's Encrypt, you can automate certificate management in Kubernetes for your applications.
 
-## Why use Let's Encrypt in Kubernetes?
+### Why use Let's Encrypt in Kubernetes?
 - **Automated Certificate Management**: Simplifies the generation, renewal, and revocation of certificates.
 - **Security**: Encrypts traffic to and from your Kubernetes applications.
 - **Scalability**: Works seamlessly with Kubernetes ingress controllers.
