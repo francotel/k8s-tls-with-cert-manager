@@ -107,4 +107,48 @@ This confirms Cert-Manager is installed and ready to manage your TLS certificate
 - **Scalability**: Works seamlessly with Kubernetes ingress controllers.
 - **Cost-Effective**: Certificates are free!
 
+### Workflow: Kubernetes and Let's Encrypt
+
+1. **ClusterIssuer or Issuer Configuration**:
+   - These are Kubernetes resources that define how Cert-Manager communicates with Let's Encrypt to request certificates.
+   - `ClusterIssuer` is cluster-wide and can issue certificates for any namespace.
+   - `Issuer` is namespace-scoped and works only within its namespace.
+
+2. **Certificate Request**:
+   - Applications create an `Ingress` resource that references the `ClusterIssuer` or `Issuer`.
+   - Cert-Manager uses this reference to request certificates from Let's Encrypt.
+
+3. **Challenge Solving**:
+   - Let's Encrypt validates that the domain requesting the certificate is owned by the client.
+   - This is done using **solvers**, such as `HTTP01` or `DNS01`.
+
+4. **Certificate Issuance**:
+   - Upon successful validation, Let's Encrypt issues a certificate, which Cert-Manager stores in a Kubernetes `Secret`.
+
+
+### Analogy 🍎🍏:
+
+1. **You**: You have an apple store (your website). First, you buy apples and put them in your store (set up your website so people can see it).
+
+2. **Cert-manager (Your helper)**: "Hello, Let’s Encrypt, I want a special gift (certificate) for my apple store, please."
+
+3. **Let’s Encrypt (The certificate owner)**: "Sure! But first, I need to check that you really own the store. Put a secret label on one of the apples and make sure people can see it at this address: `http://yourstore.com/.well-known/acme-challenge/<CODE>`."
+
+4. **Cert-manager**: "Done! Now the label is on the apple. Can you see it?"
+
+5. **Let’s Encrypt**: "Yes, I see it! Now, here’s your gift (certificate) so your store is safe."
+
+Now, your store is protected, and people can buy apples with confidence. 🍏🔐🎉
+
+## Solvers: Types and Their Roles
+
+- **HTTP01 Solver**:
+  - Proves domain ownership by creating an HTTP resource on the application.
+  - Let's Encrypt verifies by making a request to `http://<your-domain>/.well-known/acme-challenge/<token>`.
+  - Typically used with Ingress controllers like NGINX or Traefik.
+
+- **DNS01 Solver**:
+  - Proves domain ownership by adding a DNS TXT record to the domain.
+  - Useful for securing wildcard domains (e.g., `*.example.com`).
+
 ---

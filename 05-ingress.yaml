@@ -2,18 +2,19 @@ apiVersion: networking.k8s.io/v1  # API version for defining an Ingress in Kuber
 kind: Ingress                     # Resource type: Ingress to manage external HTTP/S access to services.
 metadata:
   name: secure-app-ingress        # Name of the Ingress resource.
-  labels:                         # Labels help identify and organize resources.
+  namespace: secure-app           # Namespace where this Ingress resource is created.
+  labels:                         # Labels to help identify and organize resources.
     app: secure-app               # Label associating this Ingress with the "secure-app".
   annotations:                    # Annotations provide additional configurations for the Ingress.
-    cert-manager.io/issuer: letsencrypt-nginx-cert # Specifies the Issuer for managing TLS certificates.
+    cert-manager.io/cluster-issuer: letsencrypt-nginx-cert  # Specifies the ClusterIssuer managing TLS certificates.
 spec:
   ingressClassName: nginx         # Specifies the Ingress controller to be used (e.g., nginx).
   tls:                            # TLS configuration for HTTPS.
   - hosts:                        # List of hosts to secure with TLS.
-    - echopod.orion.com   # Domain name for the app (replace with your domain).
-    secretName: letsencrypt-nginx-cert-echopod # Secret storing the TLS certificate and key.
+    - k8s.orion.com               # Domain name for the app (replace with your domain).
+    secretName: letsencrypt       # Secret storing the TLS certificate and key.
   rules:                          # Define routing rules for the Ingress.
-  - host: "echopod.muppedaanvesh.com" # Hostname for routing traffic to this app.
+  - host: "k8s.orion.com"         # Hostname for routing traffic to this app.
     http:                         # HTTP rules for the host.
       paths:                      # Define the URL paths to route traffic.
       - path: /                   # Root path to match ("/" matches all requests).

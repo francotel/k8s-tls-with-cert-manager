@@ -1,18 +1,14 @@
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: ClusterIssuer  # Defines a cluster-wide resource for issuing certificates.
 metadata:
-  name: letsencrypt-nginx-cert
+  name: letsencrypt-nginx-cert  # Name of the ClusterIssuer for reference in Ingress resources.
 spec:
-  # ACME issuer configuration
-  # `email` - the email address to be associated with the ACME account (make sure it's a valid one)
-  # `server` - the URL used to access the ACME server’s directory endpoint
-  # `privateKeySecretRef` - Kubernetes Secret to store the automatically generated ACME account private key
-  acme:
-    email: name@email.com
-    server: https://acme-v02.api.letsencrypt.org/directory
+  acme:  # Configuration for Let's Encrypt ACME protocol.
+    email: franco.navarro@orion.global  # Email address for Let's Encrypt account creation (required).
+    server: https://acme-v02.api.letsencrypt.org/directory  # Production endpoint for Let's Encrypt.
     privateKeySecretRef:
-      name: letsencrypt
-    solvers:
-    - http01:
+      name: letsencrypt  # Kubernetes Secret to store the private key for the ACME account.
+    solvers:  # Define how Let's Encrypt challenges will be solved.
+    - http01:  # Uses HTTP01 challenge to verify domain ownership.
         ingress:
-          class: nginx
+          class: nginx  # Specifies the Ingress class to route the challenge request.

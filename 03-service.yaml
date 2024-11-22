@@ -6,7 +6,7 @@ metadata:
   labels:
     app: secure-app      # Labels to categorize or identify the Service, used for grouping.
 spec:
-  type: NodePort         # Service type; ClusterIP exposes the service only within the cluster.
+  type: ClusterIP         # Service type; ClusterIP exposes the service only within the cluster.
   selector:              # Specifies which Pods this Service targets based on matching labels.
     app: secure-app      # Targets Pods with the label "app: secure-app".
   ports:                 # Configuration of ports the Service exposes.
