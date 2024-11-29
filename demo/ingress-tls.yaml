@@ -1,0 +1,30 @@
+
+spec:
+  tls:
+  - hosts:
+    - bf40-122-169-232-77.ngrok.io
+    secretName: bf40-122-169-232-77.ngrok.io
+  rules:
+  - host: bf40-122-169-232-77.ngrok.io
+
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-whale
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    ingressClassName: "nginx"
+    cert-manager.io/issuer: "letsencrypt" 
+spec:
+  rules:
+  - host: hello.whale.info
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-blue-whale-svc
+            port:
+              number: 80

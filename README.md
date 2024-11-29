@@ -51,6 +51,12 @@ You should see a ready node listed! ✅
 ```bash
 minikube addons enable ingress
 minikube addons enable metallb
+
+minikube addons list
+
+$ service=$(minikube service my-app --url)
+$ while sleep 0.1; do curl "$service"; done
+
 ```
 
 ---
@@ -96,7 +102,14 @@ NAME: cert-manager
 NAMESPACE: cert-manager  
 STATUS: deployed  
 ```
+```bash
+❯ kubectl get pods -n cert-manager
 
+NAME                                       READY   STATUS    RESTARTS   AGE
+cert-manager-7df78d6dfb-dgnc8              1/1     Running   0          79s
+cert-manager-cainjector-7895f6ff5c-nhcxp   1/1     Running   0          79s
+cert-manager-webhook-5d7fc67f7b-nsv2m      1/1     Running   0          79s
+```
 This confirms Cert-Manager is installed and ready to manage your TLS certificates! 🔐
 
 ---

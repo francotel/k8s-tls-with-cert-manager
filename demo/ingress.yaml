@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-whale
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    ingressClassName: "nginx"
+spec:
+  rules:
+  - host: hello.whale.info
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-blue-whale-svc
+            port:
+              number: 80

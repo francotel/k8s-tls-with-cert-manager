@@ -1,23 +1,23 @@
 apiVersion: apps/v1            # API version for defining a Deployment in Kubernetes.
 kind: Deployment               # Resource type: a Deployment manages Pods declaratively.
 metadata:
-  name: secure-echo-pod        # Name of the Deployment.
-  namespace: secure-app        # Specifies the namespace for this Deployment.
+  name: secure-pod        # Name of the Deployment.
+  namespace: app        # Specifies the namespace for this Deployment.
   labels:                      # Labels to identify the Deployment and its related resources.
-    app: secure-app            # General label to associate this resource with the "secure-app".
+    app: app            # General label to associate this resource with the "secure-app".
 spec:
   replicas: 2                  # Number of Pod replicas to run.
   selector:                    # Defines how to select the Pods managed by this Deployment.
     matchLabels:               # Matches labels on the Pods.
-      app: secure-app          # Ensures only Pods with this label are selected.
+      app: app          # Ensures only Pods with this label are selected.
   template:                    # Template for the Pods created by the Deployment.
     metadata:
       labels:                  # Labels applied to the Pods created by this Deployment.
-        app: secure-app        # Matches the selector.
+        app: app        # Matches the selector.
     spec:
       containers:              # List of containers defined within the Pod.
-      - name: echo-app         # Name of the container.
-        image: anvesh35/echo-pod-name # Docker image for this container.
+      - name: pod-info         # Name of the container.
+        image: francotel/pod-info:v1 # Docker image for this container.
         ports:
           - containerPort: 80  # Port exposed by the container.
         env:                   # Environment variables defined for this container.

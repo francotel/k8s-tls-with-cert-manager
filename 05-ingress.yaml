@@ -10,8 +10,7 @@ metadata:
 spec:
   ingressClassName: nginx         # Specifies the Ingress controller to be used (e.g., nginx).
   tls:                            # TLS configuration for HTTPS.
-  - hosts:                        # List of hosts to secure with TLS.
-    - k8s.orion.com               # Domain name for the app (replace with your domain).
+  - hosts: k8s.orion.com               # Domain name for the app (replace with your domain).
     secretName: letsencrypt       # Secret storing the TLS certificate and key.
   rules:                          # Define routing rules for the Ingress.
   - host: "k8s.orion.com"         # Hostname for routing traffic to this app.
