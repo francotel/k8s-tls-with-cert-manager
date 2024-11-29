@@ -178,10 +178,25 @@ spec:
   selfSigned: {}
 ```
 
-### Command to Apply:
+#### Command to Apply:
 
 ```bash
 kubectl apply -f issuer.yaml
 
 kubectl get issuers -n app
+```
+
+####  Test with Browser:
+Go to https://francotel.com. You will see a warning for self-signed certificates.
+
+Test with curl:
+
+```bash
+curl -k https://francotel.com
+```
+
+Check Logs in NGINX:
+
+```bash
+kubectl logs -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx
 ```
