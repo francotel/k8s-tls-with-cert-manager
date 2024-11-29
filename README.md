@@ -157,13 +157,13 @@ This confirms Cert-Manager is installed and ready to manage your TLS certificate
 
 ---
 
-# 🌐 Easy Steps: Self-Signed TLS in Kubernetes
+## 🌐 Easy Steps: Self-Signed TLS in Kubernetes
 
 Here is how to use self-signed certificates for your services.
 
 ---
 
-## 🛠️ Step 1: Create an Issuer
+### 🛠️ Step 1: Create an Issuer
 
 Issuer tells Kubernetes how to make the certificates.
 
