@@ -102,6 +102,7 @@ NAME: cert-manager
 NAMESPACE: cert-manager  
 STATUS: deployed  
 ```
+
 ```bash
 ❯ kubectl get pods -n cert-manager
 
@@ -143,21 +144,6 @@ This confirms Cert-Manager is installed and ready to manage your TLS certificate
 4. **Certificate Issuance**:
    - Upon successful validation, Let's Encrypt issues a certificate, which Cert-Manager stores in a Kubernetes `Secret`.
 
-
-### Analogy 🍎🍏:
-
-1. **You**: You have an apple store (your website). First, you buy apples and put them in your store (set up your website so people can see it).
-
-2. **Cert-manager (Your helper)**: "Hello, Let’s Encrypt, I want a special gift (certificate) for my apple store, please."
-
-3. **Let’s Encrypt (The certificate owner)**: "Sure! But first, I need to check that you really own the store. Put a secret label on one of the apples and make sure people can see it at this address: `http://yourstore.com/.well-known/acme-challenge/<CODE>`."
-
-4. **Cert-manager**: "Done! Now the label is on the apple. Can you see it?"
-
-5. **Let’s Encrypt**: "Yes, I see it! Now, here’s your gift (certificate) so your store is safe."
-
-Now, your store is protected, and people can buy apples with confidence. 🍏🔐🎉
-
 ## Solvers: Types and Their Roles
 
 - **HTTP01 Solver**:
@@ -170,3 +156,24 @@ Now, your store is protected, and people can buy apples with confidence. 🍏�
   - Useful for securing wildcard domains (e.g., `*.example.com`).
 
 ---
+
+# 🌐 Easy Steps: Self-Signed TLS in Kubernetes
+
+Here is how to use self-signed certificates for your services.
+
+---
+
+## 🛠️ Step 1: Create an Issuer
+
+Issuer tells Kubernetes how to make the certificates.
+
+### YAML File: `issuer.yaml`
+```yaml
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: selfsigned
+  namespace: app
+spec:
+  selfSigned: {}
+```

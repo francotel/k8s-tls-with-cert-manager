@@ -1,0 +1,17 @@
+#apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: selfsigned-crt
+  namespace: app
+spec:
+  secretName: tls-secret
+  duration: 240h
+  renewBefore: 72h
+  issuerRef:
+    kind: Issuer
+    name: selfsigned
+  commonName: "francotel.com"
+  isCA: true
+  dnsNames:
+  - "francotel.com"
