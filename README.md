@@ -167,7 +167,7 @@ Here is how to use self-signed certificates for your services.
 
 Issuer tells Kubernetes how to make the certificates.
 
-### YAML File: `issuer.yaml`
+### YAML File: `04-issuer-self.yaml`
 ```yaml
 apiVersion: cert-manager.io/v1
 kind: Issuer
@@ -184,6 +184,41 @@ spec:
 kubectl apply -f issuer.yaml
 
 kubectl get issuers -n app
+```
+
+### 🛠️ Step 2: Create a Certificate
+
+Certificate gives your service the TLS keys.
+
+### YAML File: `05-cert-self.yaml`
+
+```yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: selfsigned-crt
+  namespace: app
+spec:
+  secretName: tls-secret
+  duration: 240h
+  renewBefore: 72h
+  issuerRef:
+    kind: Issuer
+    name: selfsigned
+  commonName: "francotel.com"
+  dnsNames:
+    - "francotel.com"
+```
+
+#### Command to Apply:
+```bash
+kubectl apply -f certificate.yaml
+
+# Check Certificate:
+kubectl get certificates -n app
+
+# Check Secret Created:
+kubectl get secrets -n app | grep tls-secret
 ```
 
 ####  Test with Browser:
