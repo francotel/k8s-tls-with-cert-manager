@@ -177,3 +177,11 @@ metadata:
 spec:
   selfSigned: {}
 ```
+
+### Command to Apply:
+
+```bash
+kubectl apply -f issuer.yaml
+
+kubectl get issuers -n app
+```
